@@ -4,7 +4,9 @@ The script is customised for the analysis of modifications whose signature in Na
 
 In "results" folder: 
 - Nm_pos.bed is a bed file with rRNA modifications predicted by sequence alignment with mouse and human
-- .tsv.per.site.var.per_site_var.5mer.csv files contain the output produced by EpiNano (https://github.com/enovoa/EpiNano)
+ 
+- .tsv.per.site.var.per_site_var.5mer.csv files contain the output produced by EpiNano (https://github.com/enovoa/EpiNano) 
+
 - FBL_kmer_replicable_positions files contain positions that are differentially modified between non treated and FBL knocked-down cells in 2 replicates
 
 In "scores" folder: 
