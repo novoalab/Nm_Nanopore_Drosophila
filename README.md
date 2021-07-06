@@ -1,6 +1,6 @@
 # Nm Nanopore Drosophila
 This repository contains the scripts for the analysis of EpiNano results produced from direct RNA sequencing of rRNA of Drosophila upon Knock-Down of Fibrillarin (FBL). 
-The script is customised for the analysis of modifications whose signature in Nanopore sequencing is not limited to the modified position and diffuses in the neighboring positions (5 bases interval - here referred to as "kmer"). 
+The script is customised for the analysis of modifications whose signature in Nanopore sequencing is not limited to the modified position and diffuses in the neighboring positions (5 bases interval - here referred to as "kmer"), such as 2'-O-methylation (Nm). 
 
 In "results" folder: 
 - Nm_pos.bed is a bed file with rRNA modifications predicted by sequence alignment with mouse and human
