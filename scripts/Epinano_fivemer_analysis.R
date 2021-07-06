@@ -228,7 +228,7 @@ barplot<- function(subs){
 barplot(merged[merged$chr == ref,])
 barplot(merged1[merged1$chr == ref,])
 
-### final scores and sites in common between the two reps:
+### final scores and sites in common between the two reps (4th and 5th column containind the score in rep1 and rep2 respectively):
 
 write.table(merged1, "rep1_FBL_kmer_scores.txt", sep ="\t", col.names=F, row.names=F, quote=F)
 write.table(merged, "rep2_FBL_kmer_scores.txt", sep ="\t", col.names=F, row.names=F, quote=F)
