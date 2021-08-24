@@ -71,6 +71,9 @@ colnames(input2) <- c("X.Ref", "pos", "cov", "mis", "del", "ins", "sum")
 data1 <- cleanup(input1, label1)
 data2 <- cleanup(input2, label2)
 
+data1$NT_value <- rescale(data1$NT_value, to = c(0, 1))
+data2$FBL_value <- rescale(data2$FBL_value, to = c(0, 1))
+
 merged <- merge(data1,data2[, c(3,5)], by="chr_pos")
 merged$chr_pos <- paste(merged$Chr, merged$Position, sep = ":")
 merged$Chr <- NULL
