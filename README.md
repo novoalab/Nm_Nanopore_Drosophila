@@ -1,6 +1,7 @@
 # Nm Nanopore Drosophila
 This repository contains the scripts for the analysis of EpiNano results produced from direct RNA sequencing of rRNA of Drosophila upon Knock-Down of Fibrillarin (FBL). 
 The script is customised for the analysis of modifications whose signature in Nanopore sequencing is not limited to the modified position and diffuses in the neighboring positions (5 bases interval - here referred to as "kmer"), such as 2'-O-methylation (Nm). 
+For 5mer information, we use the Epinano (https://github.com/enovoa/EpiNano) script TSV_to_Variants_Freq.py3 to analyse the samtotsv output, that generates the .tsv.per.site.var.per_site_var.5mer.csv files for each sample and replicate.
 
 In "results" folder: 
 
