@@ -27,7 +27,7 @@ python Slide_Variants.py file.plus_strand.per.site.csv 5
 
 Once you have Epinano 5mer input ready, you can proceed to run Epinano_fivemer_analysis.R interactively in RStudio. 
 
-!!! The script requires to add custom input and output paths, file names and labels at the beginning !!!
+**!!! The script requires to add custom input and output paths, file names and labels at the beginning !!!**
 
 The script is based on 2 replicates of 2 conditions. If you have more replicates you will have to edit the script accordingly. 
 Explanation of the steps of the script is included in the script itself.
