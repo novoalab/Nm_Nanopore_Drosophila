@@ -38,8 +38,6 @@ Explanation of the steps of the script is included in the script itself.
 
 - a bed file with predicted modified sites if available (Nm_pos.bed)
 
-- a barplot of the scaled difference of the summed errors per 5mer (score) per reference per comparison.
-
 You can find examples of the input files in the "input" folder. 
 
 ## Results
@@ -50,6 +48,9 @@ The script produces as output:
 - FBL_kmer_rep1_all.txt and FBL_kmer_rep2_all.txt contain the EpiNano scores of each kmer centered in each position in the reference. Columns 4 and 5 contain the sum of errors for each kmer in non treated and FBL KD respectively, column 6 contains the difference between the sum of errors in the two conditions, referred to as EpiNano score. This file can be converted into a bedgraph by just changing extention from .txt to .bedgraph and can be loaded and visualized in IGV as barplot or heatmap.
 
 - FBL_kmer_replicable_positions_18S.txt and FBL_kmer_replicable_positions_28S.txt contain a list of sites in which a position has a score higher than 3*median of the other positions' score in both replicates for each long rRNA transcript.
+
+- a barplot of the scaled difference of the summed errors per 5mer (score) along the transcript per reference per comparison.
+
 
 ## Dependencies and versions
 
