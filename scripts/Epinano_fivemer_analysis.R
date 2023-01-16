@@ -156,65 +156,27 @@ merged$pos <- as.numeric(merged$pos)
 #merged <- merged[merged$pos > 50,]
 
 
-##scatterplot
-
-plot<- function(data){
-  subs <- data
-  res<- rlm(subs[,c(paste(label1, "value", sep="_"))] ~ subs[,c(paste(label2, "value", sep="_"))]) #linear model
-  res_vec <- res$residuals#this contains residuals
-  threshold <-  5 * sd(res_vec) #The threshold
-  subs$score<- abs(subs[,c(paste(label1, "value", sep="_"))] - subs[,c(paste(label2, "value", sep="_"))])
-  #pdf(file=paste(chr,feature, label1, label2, "scatter.pdf", sep="_"),height=5,width=5,onefile=FALSE)
-  print(ggplot(subs, aes_string(x=paste(label1, "value", sep="_"), y=paste(label2, "value", sep="_"))) +
-          geom_point(data=subs,size=2, color="grey")+
-          geom_abline(slope=1, intercept=0,linetype="dashed")+
-          geom_point(data=subset(subs, score>threshold), size=2, color="red")+
-         ggtitle(feature)+
-          xlab(label1)+
-          ylab(label2) +
-          theme_bw()+
-          theme(axis.text.x = element_text(face="bold", color="black",size=11),
-                axis.text.y = element_text(face="bold", color="black", size=11),
-                plot.title = element_text(color="black", size=15, face="bold.italic",hjust = 0.5),
-                axis.title.x = element_text(color="black", size=15, face="bold"),
-                axis.title.y = element_text(color="black", size=15, face="bold"),
-                panel.background = element_blank(),
-                axis.line = element_line(colour = "black", size=0.5),
-                legend.title = element_text(color = "black", size = 15,face="bold"),
-                legend.text = element_text(color = "black", size=15),
-                panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-  )
-  #dev.off()
-}
-
-
-
-plot(merged)
-
-
-
-ref <- "18S" ## here you can put 18S, 28S, 5S or 5.8S. All subsequent analysis and plots are to be performed for each ref.
-
-## define barplot function
-
+##barplot
+######
 barplot<- function(subs){
   subs$score<- abs(subs[,c(paste(label1, "value", sep="_"))] - subs[,c(paste(label2, "value", sep="_"))])
-  sites <- pred[pred$chr_pos %in% subs[subs$score > 3*median(subs$score),]$chr_pos,]
+  sites <- pred[pred$chr_pos %in% subs[subs$score > 5*median(subs$score) & subs$score>0.03,]$chr_pos,]
+  pos1 <- position_jitter(width = 0, seed = 0)
   redbars <- subs[subs$chr_pos %in% sites[sites$V1 == ref,]$chr_pos,]
-  #pdf(file=paste("18S",feature, label1, label2, "barplot.pdf", sep="_"),height=5,width=15,onefile=FALSE)
+  #pdf(file=paste("18S","sum", label1, label2, "barplot.pdf", sep="_"),height=5,width=15,onefile=FALSE)
   print(ggplot(subs, aes(x=pos, y=score)) +
           geom_bar(stat = "identity", width=1, fill="deepskyblue4") +
           geom_bar(data=subs[subs$score > 3*median(subs$score),], aes(x=pos, y=score),stat = "identity", width=1, fill="tan1")+
           geom_bar(data=subs[subs$score > 5*median(subs$score),], aes(x=pos, y=score),stat = "identity", width=1, fill="tomato")+
-          ggtitle(paste(feature, label1, label2, sep="_"))+
-          geom_vline(xintercept = pred[pred$V1 == ref,]$V3, linetype = "dashed", color = "slategray3")+  ### this line is to plot the positions EXPECTED to be mpdified by sequence alignment
+          ggtitle(paste("summed_errors_per_5mer", label1, label2, sep="_"))+
+          geom_vline(xintercept = pred[pred$V1 == ref,]$V3, linetype = "dashed", color = "slategray3")+
           #geom_label_repel(data=redbars, aes(x=pos, y=max(redbars$score)-0.2, label= pos),size=5, color="black", segment.size  = 0.2,segment.color = "black", fill="white", position = pos1, min.segment.length = 0)+
-          #geom_label_repel(data=redbars, aes(x=pos, y=0.2, label= pos),size=6, color="black", segment.size  = 0.2,segment.color = "black", fill="white", min.segment.length = 0)+
+          geom_label_repel(data=redbars, aes(x=pos, y=0.09, label= pos),size=6, color="black", segment.size  = 0.2,segment.color = "black", fill="white", min.segment.length = 0)+
           #geom_text_repel(data=subset(subs, score > 4*median(subs$score)), aes(pos, score, label=pos),size=3, color="red", segment.size  = 1,segment.color = "black")+
           #geom_hline(yintercept = median(subs$score), linetype = "dashed", color= "dimgray")+
-          xlab("Positions")+
-          ylab("Delta Feature") +
-          xlim(400, 1850)+
+          xlab("Position")+
+          ylab("Delta summed errors") +
+          ylim(0, 0.1)+ ## here specify a subset of coordinates of the transcript if you need to
           theme_bw()+
           theme(axis.text.x = element_text(face="bold", color="black",size=20),
                 axis.text.y = element_text(face="bold", color="black", size=20),
@@ -227,9 +189,14 @@ barplot<- function(subs){
   #dev.off()
 }
 
-
-barplot(merged[merged$chr == ref,])
-barplot(merged1[merged1$chr == ref,])
+for (ref in levels(merged$chr)){
+  pdf(file=paste(ref,"sum", "barplot_rep2.pdf", sep="_"),height=4,width=12,onefile=FALSE) 
+  barplot(merged[merged$chr==ref,])
+  dev.off()
+  pdf(file=paste(ref,"sum", "barplot_rep1.pdf", sep="_"),height=4,width=12,onefile=FALSE) 
+  barplot(merged1[merged1$chr==ref,])
+  dev.off()
+}
 
 ### final scores and sites in common between the two reps (4th and 5th column containind the score in rep1 and rep2 respectively):
 
