@@ -38,6 +38,8 @@ Explanation of the steps of the script is included in the script itself.
 
 - a bed file with predicted modified sites if available (Nm_pos.bed)
 
+- a barplot of the scaled difference of the summed errors per 5mer (score) per reference per comparison.
+
 You can find examples of the input files in the "input" folder. 
 
 ## Results
