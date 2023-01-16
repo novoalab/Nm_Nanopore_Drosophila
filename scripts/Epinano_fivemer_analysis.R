@@ -215,24 +215,3 @@ common28 <- merge(subs1[subs1$score > 3* median(subs1$score),c(1,2,3,6)], subs2[
 
 write.table(common18, "FBL_kmer_replicable_positions_18S.txt", sep ="\t", col.names=F, row.names=F, quote=F)
 write.table(common28, "FBL_kmer_replicable_positions_28S.txt", sep ="\t", col.names=F, row.names=F, quote=F)
-
-## SITES in common that have more than 3 fold higher score than the median:
-
-subs1 <- merged1[merged1$chr == ref,]
-subs2 <- merged[merged$chr == ref,]
-sites1 <- pred[pred$chr_pos %in% subs1[subs1$score > 3*median(subs1$score),]$chr_pos,]
-sites2 <- pred[pred$chr_pos %in% subs2[subs2$score > 3*median(subs2$score),]$chr_pos,]
-
-redbars1 <- subs1[subs1$chr_pos %in% sites1[sites1$V1 == ref,]$chr_pos,]
-redbars2 <- subs2[subs2$chr_pos %in% sites2[sites2$V1 == ref,]$chr_pos,]
-
-##Venn Diagram to visualise overlap of high scoring positions in the 2 replicates
-
-listsites <- list(redbars1$chr_pos, redbars2$chr_pos)
-names(listsites) <- c("rep1", "rep2")
-venn.diagram(listsites, filename=paste("venn","diagram", ref, "sites.png", sep="_"), 
-              imagetype="png", fill = c("#f5a25d", "#bedbbb"),
-             cex = 3,fontface = "bold",fontfamily = "sans",cat.cex = 1.5,
-             cat.fontface = "bold",
-             cat.default.pos = "outer",cat.fontfamily = "sans")
-
