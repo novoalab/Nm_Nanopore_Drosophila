@@ -1,4 +1,4 @@
-# Epinano-5mer for Nm detection with Nanopore
+# Detection of Nm sites from Nanopore direct RNA sequencing datasets using Epinano-5mer analysis
 
 ![image](https://user-images.githubusercontent.com/44866316/207355327-a730c0e6-42cc-4fb9-9e40-62264c431ae7.png)
 
