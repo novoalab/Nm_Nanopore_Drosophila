@@ -62,7 +62,10 @@ The script produces as output:
 
 ## Citation
   
-If you find this work useful, please cite: Sklias et al. 2023
+If you find this work useful, please cite: 
+
+Sklias A, Cruciani C, Marchand V, Spagnuolo M, Lavergne G, Bourguignon V, Dreos R, Novoa EM, Motorin Y and Roignant JY. [Comprehensive map of ribosomal 2′-O-methylation and C/D box snoRNAs in Drosophila melanogaster](https://www.biorxiv.org/content/10.1101/2023.05.25.542231v1). bioRxiv 2023
+
   
 ## Contact
 If you have any issues running this code, please go first over previous [issues](https://github.com/novoalab/Nm_Nanopore_Drosophila/issues). If you still can't figure it out based on the prior responses/issues raised, please open a new issue. Thanks!   
