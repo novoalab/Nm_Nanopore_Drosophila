@@ -3,6 +3,7 @@ library(ggplot2)
 library(ggrepel)
 library(MASS)
 library(reshape2)
+library(scales)
 
 pred <- read.table("Nm_Nanopore_Drosophila/Nm_pos.bed", sep="\t", header=F, stringsAsFactors = F)
 pred$chr_pos <- paste(pred$V1, pred$V3, sep=":")
