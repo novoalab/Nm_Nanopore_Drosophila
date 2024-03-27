@@ -64,7 +64,7 @@ The script produces as output:
   
 If you find this work useful, please cite: 
 
-Sklias A, Cruciani C, Marchand V, Spagnuolo M, Lavergne G, Bourguignon V, Dreos R, Novoa EM, Motorin Y and Roignant JY. [Comprehensive map of ribosomal 2′-O-methylation and C/D box snoRNAs in Drosophila melanogaster](https://www.biorxiv.org/content/10.1101/2023.05.25.542231v1). bioRxiv 2023
+Sklias A, Cruciani S, Marchand V, et al. Comprehensive map of ribosomal 2'-O-methylation and C/D box snoRNAs in Drosophila melanogaster. Nucleic Acids Res. Published online February 28, 2024. doi:[10.1093/nar/gkae139 ](https://pubmed.ncbi.nlm.nih.gov/38416577/)
 
   
 ## Contact
